@@ -1,0 +1,29 @@
+.header {
+    background-color: var(--primary-orange);
+    padding: 1rem 0;
+    color: var(--white);
+  }
+  
+  .container {
+    display: flex;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+  
+  .logo {
+    margin-right: 1rem;
+  }
+  
+  .logoCircle {
+    width: 50px;
+    height: 50px;
+    background-color: var(--white);
+    border-radius: 50%;
+  }
+  
+  .title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }

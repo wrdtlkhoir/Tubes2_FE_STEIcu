@@ -1,0 +1,14 @@
+.elementNode {
+    padding: 0.5rem 1rem;
+    background-color: var(--white);
+    border: 2px solid var(--primary-orange);
+    border-radius: 6px;
+    display: inline-block;
+    min-width: 100px;
+    text-align: center;
+  }
+  
+  .elementName {
+    font-weight: bold;
+    color: var(--dark-gray);
+  }

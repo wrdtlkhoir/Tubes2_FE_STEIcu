@@ -1,0 +1,24 @@
+.statsContainer {
+    background-color: var(--light-gray);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .stat {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .label {
+    font-weight: 500;
+    color: var(--dark-gray);
+  }
+  
+  .value {
+    font-weight: bold;
+    color: var(--primary-orange);
+  }

@@ -102,7 +102,7 @@ export default function Home() {
                         disabled={currentTreeIndex === 0}
                         className={styles.paginationButton}
                       >
-                        Previous Recipe
+                        Prev
                       </button>
                       <span className={styles.paginationInfo}>
                         Recipe {currentTreeIndex + 1} of {results.trees.length}
@@ -112,7 +112,7 @@ export default function Home() {
                         disabled={currentTreeIndex === results.trees.length - 1}
                         className={styles.paginationButton}
                       >
-                        Next Recipe
+                        Next
                       </button>
                     </div>
                   )}

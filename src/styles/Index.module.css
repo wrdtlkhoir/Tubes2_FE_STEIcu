@@ -20,6 +20,9 @@
 .resultInfo {
   font-size: 1rem;
   color: #333;
+  display: flex;
+  justify-content: space-between;
+    align-items: center;
 }
 
 .treeContainer {
@@ -29,45 +32,38 @@
   background-color: #f9f9f9;
   overflow-x: auto;
   min-height: 500px;
-  margin-left: 100px;
   flex-grow: 1;
 }
 .paginationControls {
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Pusatkan tombol */
   align-items: center;
-  margin: 20px 0;
-  padding: 10px;
-  background-color: #f9f9f9;
-  border-radius: 4px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  gap: 0.5rem; /* Beri jarak antar tombol */
+  margin-top: 1rem;
 }
 
 .paginationButton {
-  background-color: #4a90e2;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  padding: 8px 16px;
-  margin: 0 10px;
+  width: 40px; /* Sesuaikan ukuran tombol */
+  height: 40px;
+  border-radius: 50%; /* Buat tombol berbentuk lingkaran */
+  border: 2px solid var(--primary-orange);
+  background-color: var(--white);
+  color: var(--primary-orange);
+  font-weight: bold;
   cursor: pointer;
-  font-weight: 500;
-  transition: background-color 0.2s;
-}
-
-.paginationButton:hover {
-  background-color: #3a7bd5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s;
 }
 
 .paginationButton:disabled {
-  background-color: #cccccc;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .paginationInfo {
-  font-size: 14px;
-  color: #666;
-  margin: 0 15px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #333;
 }
-
-

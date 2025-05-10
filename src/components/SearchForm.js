@@ -16,7 +16,7 @@ const SearchForm = ({ onSearch }) => {
       target: targetElement,
       algorithm,
       searchMode,
-      maxRecipes: searchMode === 'multiple' ? maxRecipes : undefined,
+      maxRecipes: parseInt(maxRecipes),
     });
   };
 

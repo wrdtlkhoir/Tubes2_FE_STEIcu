@@ -4,7 +4,7 @@ import styles from '../styles/SearchForm.module.css';
 const SearchForm = ({ onSearch }) => {
   const [targetElement, setTargetElement] = useState('');
   const [algorithm, setAlgorithm] = useState('DFS');
-  const [searchMode, setSearchMode] = useState('shortest');
+  const [searchMode, setSearchMode] = useState('single');
   const [maxRecipes, setMaxRecipes] = useState(1);
 
   const handleSubmit = (e) => {
@@ -61,8 +61,8 @@ const SearchForm = ({ onSearch }) => {
           <div className={styles.toggleGroup}>
             <button
               type="button"
-              className={`${styles.toggleButton} ${searchMode === 'shortest' ? styles.active : ''}`}
-              onClick={() => setSearchMode('shortest')}
+              className={`${styles.toggleButton} ${searchMode === 'single' ? styles.active : ''}`}
+              onClick={() => setSearchMode('single')}
             >
               Shortest
             </button>

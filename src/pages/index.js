@@ -16,7 +16,8 @@ export default function Home() {
     setError(null);
 
     try {
-      if (searchParams.algorithm !== 'DFS' || searchParams.searchMode !== 'shortest') {
+      // validate input params
+      if (searchParams.algorithm !== 'DFS' || searchParams.searchMode !== 'single') {
         // Jika algoritma atau mode belum diintegrasikan
         setResults({
           executionTime: 0,

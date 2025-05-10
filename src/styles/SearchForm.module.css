@@ -25,28 +25,24 @@
   }
   
   .toggleGroup {
-    width: 150px;
+  display: flex;
+  gap: 0.5rem;
   }
-  
-  .toggle {
-    display: flex;
-    width: 100%;
-    border-radius: 22px;
-    overflow: hidden;
-    border: 1px solid #ccc;
-  }
-  
-  .toggleBtn {
+
+  .toggleButton {
     flex: 1;
-    padding: 0.75rem 0;
-    border: none;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--primary-orange);
+    border-radius: 6px;
     background-color: var(--white);
-    cursor: pointer;
+    color: var(--primary-orange);
     font-size: 1rem;
-    transition: background-color 0.3s;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
   }
-  
-  .toggleBtn.active {
+
+  .toggleButton.active {
     background-color: var(--primary-orange);
     color: var(--white);
   }

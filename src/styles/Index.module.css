@@ -1,0 +1,37 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  padding: 20px;
+}
+
+.sidebar {
+  flex: 0 0 300px;
+  max-width: 300px;
+}
+
+.content {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.resultInfo {
+  font-size: 1rem;
+  color: #333;
+}
+
+.treeContainer {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  overflow-x: auto;
+  min-height: 500px;
+  margin-left: 100px;
+  flex-grow: 1;
+}
+
+
+

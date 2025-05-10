@@ -36,16 +36,29 @@ const RecipeTree = ({ paths }) => {
   }
 
   const treeData = [pathsToTree(paths)];
+  // Pagination controls
+  const handlePrevRecipe = () => {
+    setActiveRecipe((prev) => (prev > 0 ? prev - 1 : prev));
+  };
+
+  const handleNextRecipe = () => {
+    setActiveRecipe((prev) => (prev < recipes.length - 1 ? prev + 1 : prev));
+  };
+  // Setting tree size and position
+  const containerRef = React.useRef(null);
 
   return (
     <div className={styles.treeContainer}>
-      <Tree
-        data={treeData}
-        renderCustomNodeElement={({ nodeDatum }) => (
-          <CustomNode nodeDatum={nodeDatum} />
-        )}
-        orientation="vertical"
-      />
+      <div className={styles.treeWrapper} ref={containerRef}>
+        <Tree
+          data={treeData}
+          renderCustomNodeElement={({ nodeDatum }) => (
+            <CustomNode nodeDatum={nodeDatum} />
+          )}
+          orientation="vertical"
+          translate={{ x: 200, y: 100 }}
+        />
+      </div>
     </div>
   );
 };

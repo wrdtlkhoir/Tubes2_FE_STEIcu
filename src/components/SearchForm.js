@@ -5,6 +5,7 @@ const SearchForm = ({ onSearch }) => {
   const [targetElement, setTargetElement] = useState('');
   const [algorithm, setAlgorithm] = useState('DFS');
   const [searchMode, setSearchMode] = useState('shortest');
+  const [maxRecipes, setMaxRecipes] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,6 +13,7 @@ const SearchForm = ({ onSearch }) => {
       target: targetElement,
       algorithm,
       searchMode,
+      maxRecipes: searchMode === 'multiple' ? maxRecipes : undefined,
     });
   };
 
@@ -29,31 +31,64 @@ const SearchForm = ({ onSearch }) => {
           />
         </div>
         <div className={styles.formRow}>
-          <label>
-            Algorithm:
-            <select
-              value={algorithm}
-              onChange={(e) => setAlgorithm(e.target.value)}
-              className={styles.selectInput}
+          <label>Algorithm:</label>
+          <div className={styles.toggleGroup}>
+            <button
+              type="button"
+              className={`${styles.toggleButton} ${algorithm === 'DFS' ? styles.active : ''}`}
+              onClick={() => setAlgorithm('DFS')}
             >
-              <option value="DFS">DFS</option>
-              <option value="BFS">BFS</option>
-            </select>
-          </label>
+              DFS
+            </button>
+            <button
+              type="button"
+              className={`${styles.toggleButton} ${algorithm === 'BFS' ? styles.active : ''}`}
+              onClick={() => setAlgorithm('BFS')}
+            >
+              BFS
+            </button>
+            <button
+              type="button"
+              className={`${styles.toggleButton} ${algorithm === 'Bidirectional' ? styles.active : ''}`}
+              onClick={() => setAlgorithm('Bidirectional')}
+            >
+              Bidirectional
+            </button>
+          </div>
         </div>
         <div className={styles.formRow}>
-          <label>
-            Search Mode:
-            <select
-              value={searchMode}
-              onChange={(e) => setSearchMode(e.target.value)}
-              className={styles.selectInput}
+          <label>Search Mode:</label>
+          <div className={styles.toggleGroup}>
+            <button
+              type="button"
+              className={`${styles.toggleButton} ${searchMode === 'shortest' ? styles.active : ''}`}
+              onClick={() => setSearchMode('shortest')}
             >
-              <option value="shortest">Shortest Path</option>
-              <option value="multiple">Multiple Paths</option>
-            </select>
-          </label>
+              Shortest
+            </button>
+            <button
+              type="button"
+              className={`${styles.toggleButton} ${searchMode === 'multiple' ? styles.active : ''}`}
+              onClick={() => setSearchMode('multiple')}
+            >
+              Multiple
+            </button>
+          </div>
         </div>
+        {searchMode === 'multiple' && (
+          <div className={styles.formRow}>
+            <label>
+              Max Recipes:
+              <input
+                type="number"
+                min="1"
+                value={maxRecipes}
+                onChange={(e) => setMaxRecipes(Number(e.target.value))}
+                className={styles.numberInput}
+              />
+            </label>
+          </div>
+        )}
         <button type="submit" className={styles.searchButton}>
           Search
         </button>

@@ -3,12 +3,15 @@ import styles from '../styles/SearchForm.module.css';
 
 const SearchForm = ({ onSearch }) => {
   const [targetElement, setTargetElement] = useState('');
-  const [algorithm, setAlgorithm] = useState('DFS');
-  const [searchMode, setSearchMode] = useState('single');
+  const [algorithm, setAlgorithm] = useState('');
+  const [searchMode, setSearchMode] = useState('');
   const [maxRecipes, setMaxRecipes] = useState(1);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // pastikan hanya kirim jika semua valid
+    if (!targetElement || !algorithm || !searchMode) return;
+
     onSearch({
       target: targetElement,
       algorithm,
@@ -33,27 +36,16 @@ const SearchForm = ({ onSearch }) => {
         <div className={styles.formRow}>
           <label>Algorithm:</label>
           <div className={styles.toggleGroup}>
-            <button
-              type="button"
-              className={`${styles.toggleButton} ${algorithm === 'DFS' ? styles.active : ''}`}
-              onClick={() => setAlgorithm('DFS')}
-            >
-              DFS
-            </button>
-            <button
-              type="button"
-              className={`${styles.toggleButton} ${algorithm === 'BFS' ? styles.active : ''}`}
-              onClick={() => setAlgorithm('BFS')}
-            >
-              BFS
-            </button>
-            <button
-              type="button"
-              className={`${styles.toggleButton} ${algorithm === 'Bidirectional' ? styles.active : ''}`}
-              onClick={() => setAlgorithm('Bidirectional')}
-            >
-              Bidirectional
-            </button>
+            {['DFS', 'BFS', 'Bidirectional'].map((alg) => (
+              <button
+                key={alg}
+                type="button"
+                className={`${styles.toggleButton} ${algorithm === alg ? styles.active : ''}`}
+                onClick={() => setAlgorithm(alg)}
+              >
+                {alg}
+              </button>
+            ))}
           </div>
         </div>
         <div className={styles.formRow}>
@@ -89,7 +81,11 @@ const SearchForm = ({ onSearch }) => {
             </label>
           </div>
         )}
-        <button type="submit" className={styles.searchButton}>
+        <button
+          type="submit"
+          className={styles.searchButton}
+          disabled={!targetElement || !algorithm || !searchMode}
+        >
           Search
         </button>
       </form>

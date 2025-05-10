@@ -17,19 +17,32 @@ export default function Home() {
 
     try {
       // validate input params
-      if (searchParams.algorithm !== 'DFS' || searchParams.searchMode !== 'single') {
-        // Jika algoritma atau mode belum diintegrasikan
+      if(searchParams.algorithm === 'DFS' && searchParams.searchMode === 'single') {
+        const data = await searchRecipes(searchParams);
+        setResults(data);
+      } else if (searchParams.algorithm === 'BFS' && searchParams.searchMode === 'single') {
+        const data = await searchRecipes(searchParams);
+        setResults(data);
+      // }
+      // else if (searchParams.algorithm === 'Bidirectional' && searchParams.searchMode === 'single') {
+      //   const data = await searchRecipes(searchParams);
+      //   setResults(data);
+      // } else if (searchParams.algorithm === 'Bidirectional' && searchParams.searchMode === 'multiple') {
+      //   const data = await searchRecipes(searchParams);
+      //   setResults(data);
+      // } else if (searchParams.algorithm === 'BFS' && searchParams.searchMode === 'multiple') {
+      //   const data = await searchRecipes(searchParams);
+      //   setResults(data);
+      // } else if (searchParams.algorithm === 'DFS' && searchParams.searchMode === 'multiple') {
+      //   const data = await searchRecipes(searchParams);
+      //   setResults(data);
+      } else
         setResults({
           executionTime: 0,
           nodesVisited: 0,
           path: [],
           message: 'Resep belum ada karena belum diintegrasikan.',
         });
-      } else {
-        // Panggil API untuk DFS dan Shortest Path
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      }
     } catch (err) {
       setError(err.response?.data?.message || 'An error occurred');
       console.error(err);

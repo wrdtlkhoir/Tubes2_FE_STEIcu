@@ -57,11 +57,11 @@ export default function Home() {
                     stats={{
                       time: results.executionTime / 1000, // Konversi ms ke detik
                       nodesVisited: results.nodesVisited,
-                      recipesFound: results.path.length,
+                      recipesFound: results.tree.length,
                     }}
                   />
                   <div className={styles.treeContainer}>
-                    <RecipeTree paths={results.path} />
+                    <RecipeTree treeData={results.tree} />
                   </div>
                 </>
               )}

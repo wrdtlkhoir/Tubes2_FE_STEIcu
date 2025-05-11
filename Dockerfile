@@ -2,7 +2,6 @@
 FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-COPY .env.local ./
 RUN npm install
 COPY . .
 RUN npm run build

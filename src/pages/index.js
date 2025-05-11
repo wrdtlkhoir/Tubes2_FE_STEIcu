@@ -19,36 +19,12 @@ export default function Home() {
     setCurrentTreeIndex(0);
 
     try {
-      // validate input params
-      if(searchParams.algorithm === 'DFS' && searchParams.searchMode === 'single') {
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      } else if (searchParams.algorithm === 'BFS' && searchParams.searchMode === 'single') {
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      }
-      else if (searchParams.algorithm === 'Bidirectional' && searchParams.searchMode === 'single') {
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      } else if (searchParams.algorithm === 'Bidirectional' && searchParams.searchMode === 'multiple') {
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      } else if (searchParams.algorithm === 'BFS' && searchParams.searchMode === 'multiple') {
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      } else if (searchParams.algorithm === 'DFS' && searchParams.searchMode === 'multiple') {
-        const data = await searchRecipes(searchParams);
-        setResults(data);
-      } else
-        setResults({
-          executionTime: 0,
-          nodesVisited: 0,
-          path: [],
-          message: 'Resep belum ada karena belum diintegrasikan.',
-        });
+      // Simple API call without conditional branching
+      const data = await searchRecipes(searchParams);
+      setResults(data);
     } catch (err) {
-      setError(err.response?.data?.message || 'An error occurred');
-      console.error(err);
+      console.error('Error details:', err);
+      setError(err.message || 'An error occurred');
     } finally {
       setLoading(false);
     }
@@ -90,7 +66,7 @@ export default function Home() {
                 <>
                   <ResultsStats
                     stats={{
-                      time: results.executionTime, // Konversi ms ke detik
+                      time: results.executionTime,
                       nodesVisited: results.nodesVisited,
                       recipesFound: results.trees ? results.trees.length : (results.tree ? 1 : 0),
                     }}
@@ -119,8 +95,10 @@ export default function Home() {
                   <div className={styles.treeContainer}>
                     {results.trees ? (
                       <RecipeTree treeData={getCurrentTree()} />
-                    ) : (
+                    ) : results.tree ? (
                       <RecipeTree treeData={results.tree} />
+                    ) : (
+                      <p>No recipe tree data available</p>
                     )}
                   </div>
                 </>

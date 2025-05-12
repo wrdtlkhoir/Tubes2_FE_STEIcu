@@ -28,6 +28,7 @@ if (typeof window !== 'undefined') {
   console.log(`Using server-side API URL: ${apiBaseUrl}${apiPath}`);
 }
 
+      apiBaseUrl = envUrl.replace('/api/search', ''); // Remove `/api/search` part
 export const searchRecipes = async (params) => {
   try {
     const url = `${apiBaseUrl}${apiPath}`;

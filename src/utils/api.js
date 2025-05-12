@@ -4,27 +4,25 @@ import axios from 'axios';
 let apiBaseUrl;
 let apiPath = '/api/search';
 
-// Cek apakah URL dari env sudah mengandung path
-if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) {
-  const envUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (envUrl.includes('/api/search')) {
-    // URL sudah memiliki path
-    apiBaseUrl = envUrl.replace('/api/search', '');
-  } else {
-    // URL hanya berisi base
-    apiBaseUrl = envUrl;
-  }
-} else {
-  // Fallback untuk development
-  apiBaseUrl = 'http://localhost:8080';
-}
-
-// Untuk browser, gunakan hostname dari window
+// Untuk browser, gunakan URL yang berasal dari environment variable khusus Railway
+// atau gunakan hostname dari browser jika tersedia
 if (typeof window !== 'undefined') {
+  // Dalam browser
   const hostname = window.location.hostname;
-  apiBaseUrl = `http://${hostname}:8080`;
-  console.log(`Using browser-detected API URL: ${apiBaseUrl}${apiPath}`);
+  
+  // Jika di Railway atau environment lain
+  if (hostname.includes('railway.app') || !hostname.includes('localhost')) {
+    // Gunakan URL backend yang sudah dikonfigurasi di Railway
+    apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'https://tubes2besteicu-production.up.railway.app/';
+  } else {
+    // Lokal development
+    apiBaseUrl = 'http://localhost:8080';
+  }
+  
+  console.log(`Using API URL: ${apiBaseUrl}${apiPath}`);
 } else {
+  // Server-side rendering, gunakan environment variable
+  apiBaseUrl = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8080';
   console.log(`Using server-side API URL: ${apiBaseUrl}${apiPath}`);
 }
 

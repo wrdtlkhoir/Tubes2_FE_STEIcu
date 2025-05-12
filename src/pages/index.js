@@ -5,6 +5,7 @@ import ResultsStats from '../components/ResultsStats';
 import { searchRecipes } from '../utils/api';
 import RecipeTree from '../components/RecipeTree';
 import styles from '../styles/Index.module.css';
+import statStyle from '../styles/ResultsStats.module.css'
 
 export default function Home() {
   const [loading, setLoading] = useState(false);
@@ -47,6 +48,11 @@ export default function Home() {
   const getCurrentTree = () => {
     if (!results || !results.trees) return null;
     return results.trees[currentTreeIndex];
+  };
+
+  const getCurrentCntNode = () => {
+    if (!results || !results.nodesVisited) return null;
+    return results.nodesVisited[currentTreeIndex] || results.nodesVisited;
   };
 
   return (
@@ -92,6 +98,10 @@ export default function Home() {
                       </button>
                     </div>
                   )}
+                  <div className={statStyle.stats}>
+                    <span className={statStyle.label}>Nodes visited: </span>
+                    <span className={statStyle.value}>{getCurrentCntNode()}</span>
+                  </div>
                   <div className={styles.treeContainer}>
                     {results.trees ? (
                       <RecipeTree treeData={getCurrentTree()} />

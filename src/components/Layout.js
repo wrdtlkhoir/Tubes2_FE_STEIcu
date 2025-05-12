@@ -13,7 +13,7 @@ const Layout = ({ children }) => {
       </main>
       <footer className={styles.footer}>
         <div className={styles.container}>
-          <p>© 2025 Little Alchemy Recipe Finder | Created by Stecu Team</p>
+          <p>© 2025 Little Alchemy Recipe Finder | Created by Steicu Team</p>
         </div>
       </footer>
     </div>

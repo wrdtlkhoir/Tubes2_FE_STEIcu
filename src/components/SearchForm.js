@@ -1,11 +1,17 @@
 import React, { useState } from 'react';
 import styles from '../styles/SearchForm.module.css';
 
+function capitalizeFirst(s) {
+  if (!s) return s;
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 const SearchForm = ({ onSearch }) => {
   const [targetElement, setTargetElement] = useState('');
   const [algorithm, setAlgorithm] = useState('');
   const [searchMode, setSearchMode] = useState('');
   const [maxRecipes, setMaxRecipes] = useState(1);
+  const validTarget = capitalizeFirst(targetElement)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,11 +19,13 @@ const SearchForm = ({ onSearch }) => {
     if (!targetElement || !algorithm || !searchMode) return;
 
     onSearch({
-      target: targetElement,
+      target: validTarget,
       algorithm,
       searchMode,
       maxRecipes: parseInt(maxRecipes),
     });
+
+    console.log("target: " + validTarget)
   };
 
   return (
@@ -56,7 +64,7 @@ const SearchForm = ({ onSearch }) => {
               className={`${styles.toggleButton} ${searchMode === 'single' ? styles.active : ''}`}
               onClick={() => setSearchMode('single')}
             >
-              Shortest
+              Single
             </button>
             <button
               type="button"

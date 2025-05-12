@@ -8,11 +8,7 @@ const ResultsStats = ({ stats }) => {
     <div className={styles.statsContainer}>
       <div className={styles.stat}>
         <span className={styles.label}>Search time:</span>
-        <span className={styles.value}>{stats.time}s</span>
-      </div>
-      <div className={styles.stat}>
-        <span className={styles.label}>Nodes visited:</span>
-        <span className={styles.value}>{stats.nodesVisited}</span>
+        <span className={styles.value}>{stats.time} ms</span>
       </div>
       <div className={styles.stat}>
         <span className={styles.label}>Recipes found:</span>

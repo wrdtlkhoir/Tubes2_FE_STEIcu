@@ -8,7 +8,7 @@ if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) {
   if (envUrl.includes('/api/search')) {
     apiBaseUrl = envUrl.replace('/api/search', '');
   } else {
-    apiBaseUrl = envUrl;
+    apiBaseUrl = 'http://localhost:8080';
   }
 } else if (typeof window !== 'undefined') {
   if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {

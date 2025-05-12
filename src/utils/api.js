@@ -4,31 +4,28 @@ import axios from 'axios';
 let apiBaseUrl;
 let apiPath = '/api/search';
 
-// Cek apakah URL dari env sudah mengandung path
-if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) {
-  const envUrl = process.env.NEXT_PUBLIC_API_URL;
-  if (envUrl.includes('/api/search')) {
-    // URL sudah memiliki path
-    apiBaseUrl = envUrl.replace('/api/search', '');
-  } else {
-    // URL hanya berisi base
-    apiBaseUrl = envUrl;
-  }
-} else {
-  // Fallback untuk development
-  apiBaseUrl = 'http://localhost:8080';
-}
-
-// Untuk browser, gunakan hostname dari window
 if (typeof window !== 'undefined') {
-  const hostname = window.location.hostname;
-  apiBaseUrl = `http://${hostname}:8080`;
-  console.log(`Using browser-detected API URL: ${apiBaseUrl}${apiPath}`);
-} else {
-  console.log(`Using server-side API URL: ${apiBaseUrl}${apiPath}`);
+  // Check if we are running in a Node.js environment (for example, during SSR or static site generation in Next.js)
+  if (typeof process !== 'undefined' && process.env.NEXT_PUBLIC_API_URL) {
+    const envUrl = process.env.NEXT_PUBLIC_API_URL;
+    // For production environment (handle URL modification)
+    if (envUrl.includes('/api/search')) {
+      apiBaseUrl = envUrl.replace('/api/search', ''); // Remove `/api/search` part
+    } else {
+      apiBaseUrl = envUrl;
+    }
+  } else {
+    // Check if running locally (e.g., localhost or another local environment)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+      // Use your local API base URL when running locally
+      apiBaseUrl = 'http://localhost:8080';
+    } else {
+      // Fallback to production URL if not localhost (for deployed environment)
+      apiBaseUrl = 'https://tubes2besteicu-production.up.railway.app';
+    }
+  }
 }
 
-      apiBaseUrl = envUrl.replace('/api/search', ''); // Remove `/api/search` part
 export const searchRecipes = async (params) => {
   try {
     const url = `${apiBaseUrl}${apiPath}`;

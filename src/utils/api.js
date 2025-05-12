@@ -21,7 +21,7 @@ if (typeof window !== 'undefined') {
       apiBaseUrl = 'http://localhost:8080';
     } else {
       // Fallback to production URL if not localhost (for deployed environment)
-      apiBaseUrl = 'https://tubes2besteicu-production.up.railway.app';
+      apiBaseUrl = 'https://tubes2besteicu-production.up.railway.app/api/search';
     }
   }
 }
